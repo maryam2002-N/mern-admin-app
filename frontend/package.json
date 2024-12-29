@@ -45,6 +45,6 @@
     "craco-less": "^1.17.1",
     "cross-env": "^7.0.3",
     "react-reconciler": "^0.26.2",
-    "react-refresh": "^0.10.0"
+    "react-refresh": "^0.9.0"
   }
 }
