@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const cors = require("cors"); // Importer le module cors
 
 // Make sure we are running node 10.0+
 const [major, minor] = process.versions.node.split(".").map(parseFloat);
@@ -28,7 +29,7 @@ mongoose.connect(DB_URI, {
 
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 mongoose.connection.on("error", (err) => {
-  console.error(`🚫 Error → : ${err.message}`);
+  console.error(🚫 Error → : ${err.message});
 });
 
 // Load all models
@@ -42,6 +43,14 @@ glob.sync("./models/*.js").forEach(function (file) {
 // Start our app!
 const app = require("./app");
 app.set("port", process.env.PORT || 80);
+
+// CORS Middleware: autoriser les demandes de l'origine de votre frontend
+app.use(cors({
+  origin: 'http://84.8.129.57', // Remplacez par l'URL de votre frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Définir les méthodes autorisées
+  credentials: true, // Si vous avez besoin d'envoyer des cookies ou d'autres informations de session
+}));
+
 const server = app.listen(app.get("port"), () => {
-  console.log(`Express running → On PORT : ${server.address().port}`);
+  console.log(Express running → On PORT : ${server.address().port});
 });
