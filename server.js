@@ -9,6 +9,14 @@ if (major < 10 || (major === 10 && minor <= 0)) {
   process.exit();
 }
 
+const cors = require('cors');
+
+app.use(cors({
+  origin: ['http://84.8.129.57'], // Remplacez par votre URL cliente
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
+
 // Import environmental variables from our variables.env file
 require("dotenv").config({ path: ".variables.env" });
 
